@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="400" Height="450"
+        Padding="4"
+        x:Class="HitsTheNeighbours.Desktop.MainWindow"
+        Title="Hit(s)TheNeighbours">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Hit(s) The Neighbours!" Padding="4" FontSize="24" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        
+        <Button Content="Load Excel" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="LoadExcelBtn"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ExcelPath" IsEnabled="False"></TextBox>
+       
+        <Button Content="Load Front Image" Grid.Column="0" Grid.Row="2" x:Name="LoadFrontImageBtn" />
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="FrontImagePath" IsEnabled="False"></TextBox>
+        
+        <Button Content="Load Back Image" Grid.Column="0" Grid.Row="3" x:Name="LoadBackImageBtn"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="BackImagePath" IsEnabled="False"></TextBox>
+        
+        <Button Content="Start Processing" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0 4" x:Name="ProcessBtn" Background="BlueViolet" Foreground="White" IsEnabled="False"/>
+
+    </Grid>
+</Window>
