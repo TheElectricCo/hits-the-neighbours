@@ -13,6 +13,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -21,16 +23,17 @@
         
         <TextBlock Text="Hit(s) The Neighbours!" Padding="4" FontSize="24" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         
-        <Button Content="Load Excel" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" x:Name="LoadExcelBtn"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ExcelPath" IsEnabled="False"></TextBox>
+        <Button Content="STEP 1: Load Excel" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" x:Name="LoadExcelBtn" Margin="4"/>
+        <TextBox Name="CardTitle" Grid.Row="2" Grid.ColumnSpan="2" Margin="4"></TextBox>
+        <Button Content="STEP 2: Front Image" Grid.Column="0" Grid.Row="3" x:Name="LoadFrontImageBtn" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="4"  />
+        <Button Content="STEP 3: Back Image" Grid.Column="1" Grid.Row="3" x:Name="LoadBackImageBtn" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="4" />
        
-        <Button Content="Load Front Image" Grid.Column="0" Grid.Row="2" x:Name="LoadFrontImageBtn" />
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="FrontImagePath" IsEnabled="False"></TextBox>
+        <Image Grid.Row="4" Grid.Column="0" x:Name="FrontImage" Width="200" Height="200" Margin="4" ></Image>
         
-        <Button Content="Load Back Image" Grid.Column="0" Grid.Row="3" x:Name="LoadBackImageBtn"/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="BackImagePath" IsEnabled="False"></TextBox>
-        
-        <Button Content="Start Processing" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0 4" x:Name="ProcessBtn" Background="BlueViolet" Foreground="White" IsEnabled="False"/>
+        <Image Grid.Row="4" Grid.Column="1" x:Name="BackImage" Width="200" Height="200" Margin="4" ></Image>
+
+        <TextBlock Text="" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="GenerateText" Margin="4" />
+        <Button Content="Create PDF!" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="4" x:Name="ProcessBtn" Background="BlueViolet" Foreground="White" IsEnabled="False" />
 
     </Grid>
 </Window>

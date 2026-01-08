@@ -28,6 +28,8 @@ public partial class MainWindow : Window
         EnvironmentSetup.SetLicenses();
         _excelService = new ExcelReadService();
         _pdfService = new PdfPrintService();
+
+        CardTitle.Text = "Hit(s)TheNeighbors";
         
         LoadExcelBtn.Click += LoadExcelBtnOnClick;
         LoadBackImageBtn.Click += LoadBackImageBtnOnClick;
@@ -50,8 +52,9 @@ public partial class MainWindow : Window
             if (files.Count > 0)
             {
                 var file = files[0];
-                BackImagePath.Text = file.Path.AbsolutePath;
                 _backImagePath = file.Path.AbsolutePath;
+                BackImage.Source =  new Avalonia.Media.Imaging.Bitmap(file.Path.AbsolutePath);
+
                 CanEnable();
             }
         }
@@ -75,13 +78,17 @@ public partial class MainWindow : Window
             if (files.Count > 0)
             {
                 var file = files[0];
-                ExcelPath.Text = file.Path.AbsolutePath;
                 _excelFilePath = file.Path.AbsolutePath;
+                
+                var hits = await _excelService.ReadExcelAsync(_excelFilePath);
+                GenerateText.Text = "Hits to generate: " + hits.Count;
+                
                 CanEnable();
             }
         }
         catch (Exception ex)
         {
+            GenerateText.Text = ex.Message;
             throw; // TODO handle exception
         }
     }
@@ -100,8 +107,9 @@ public partial class MainWindow : Window
             if (files.Count > 0)
             {
                 var file = files[0];
-                FrontImagePath.Text = file.Path.AbsolutePath;
                 _frontImagePath = file.Path.AbsolutePath;
+                
+                FrontImage.Source =  new Avalonia.Media.Imaging.Bitmap(file.Path.AbsolutePath);
                 CanEnable();
             }
         }
@@ -126,7 +134,7 @@ public partial class MainWindow : Window
             {
                 var filePath = storageFile.Path.AbsolutePath;
                 var hits = await _excelService.ReadExcelAsync(_excelFilePath);
-                var result = _pdfService.GeneratePdf(filePath, _title, _backImagePath, _frontImagePath, hits);
+                var result = _pdfService.GeneratePdf(filePath, CardTitle.Text ?? _title, _backImagePath, _frontImagePath, hits);
                 
                 var box = MessageBoxManager
                     .GetMessageBoxStandard("PDF Generation", result ? "PDF generated successfully!" : "Failed to generate PDF.",
